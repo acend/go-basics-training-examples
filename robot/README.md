@@ -1,7 +1,7 @@
 # Robot Exercise
 
 Imagine we have a robot which moves around on a coordinate system.
-The robot starts at the postion `0,0`.
+The robot starts at the position `0,0`.
 
 For the robot we have a list of instructions in the following form:
 
@@ -14,7 +14,7 @@ down 2
 up 2
 ```
 
-Each line is one instruction. A instruction consists of a direction and a number which describes how far we move into this direction. After each instruction the robot is on a new position.
+Each line is one instruction. An instruction consists of a direction and a number which describes how far we move into this direction. After each instruction the robot is in a new position.
 
 With the instructions from the example above we would do the following steps:
 * The first instruction `right 3` moves the robot to the position `3,0`
@@ -34,8 +34,8 @@ Read all instructions from the file `input.txt` and perform the appropriate acti
 Answer the following questions:
 
 1. What is the end position of the robot?
-2. Which is distance furthest to the left, which the robot visited?
-3. Which is distance furthest to the right, which the robot visited?
+2. Which is the distance furthest to the left, which the robot visited?
+3. Which is the distance furthest to the right, which the robot visited?
 4. Which position did we visit most often?
 
 
@@ -43,7 +43,7 @@ Answer the following questions:
 
 Try to solve the example with only 6 instructions first. Do not solve all tasks at once. Try to find the end position first and then try to extend your solution for the other tasks.
 
-To read the file you can use [os.ReadFile](https://pkg.go.dev/os#ReadFile) which gives you the contnet of the whole file as a `[]byte`.
+To read the file you can use [os.ReadFile](https://pkg.go.dev/os#ReadFile) which gives you the content of the whole file as a `[]byte`.
 ```golang
 rawData, err := os.ReadFile(fileName)
 if err != nil {
