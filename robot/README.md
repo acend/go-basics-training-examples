@@ -41,7 +41,7 @@ Answer the following questions:
 
 ## Tips
 
-Try to solve the example with only 6 instructions first. Do not solve all tasks at once. Try to find the end position first and then try to extend your solution for the other tasks.
+Try to solve the exercise only with the 6 example instructions first. Do not solve all tasks at once. Try to find the end position first and then try to extend your solution for the other tasks.
 
 To read the file you can use [os.ReadFile](https://pkg.go.dev/os#ReadFile) which gives you the content of the whole file as a `[]byte`.
 ```golang
@@ -58,7 +58,9 @@ for _, line := range strings.Split(string(rawData), "\n") {
 }
 ```
 
-The [strings](https://pkg.go.dev/strings) package does contain a lot of other useful functions to work with strings (eg. [strings.Cut](https://pkg.go.dev/strings#Cut)).
+The [strings](https://pkg.go.dev/strings) package does contain a lot of other useful functions to work with strings (eg. [strings.Cut](https://pkg.go.dev/strings#Cut) or [strings.Fields](https://pkg.go.dev/strings#Fields)).
+
+You can convert a string into an integer using [strconv.Atoi](https://pkg.go.dev/strconv#Atoi) from the [strconv](https://pkg.go.dev/strconv) package.
 
 You can represent directions (`up`, `right`, etc.) as integers:
 
@@ -71,8 +73,18 @@ const (
 )
 ```
 
-Keep related state togehter in a struct:
+Keep related state togehter in a struct.
 
+For example an instruction could look like this:
+
+```golang
+type Instruction struct {
+	Direction int
+	Distance  int
+}
+```
+
+And a postion could look like this:
 ```golang
 type Position struct {
 	X int
