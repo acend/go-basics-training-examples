@@ -73,7 +73,7 @@ const (
 )
 ```
 
-Keep related state togehter in a struct.
+Keep related state together in a struct.
 
 For example an instruction could look like this:
 
