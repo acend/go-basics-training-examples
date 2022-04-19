@@ -4,8 +4,25 @@
 ## General
 
 1. Run a server and implement a handler which returns `pong` on the endpoint `/ping`.
-2. Create a middleware to log every request. Log the path, method and duration of the request.
+2. Create a middleware to log every request. Log the path, method, duration and the IP of the client of the request.
 
+Your log should look similar to this:
+```
+2022/04/11 10:03:08 remote=192.168.1.143 path=/foo method=GET duration=13.765874ms
+```
+
+Tips:
+
+* Consider using the [log](https://pkg.go.dev/log) package from the standard library
+* You can measure time using the [time](https://pkg.go.dev/time) package:
+
+```golang
+start := time.Now()
+
+// time consuming action
+
+duration := time.Now().Sub(start)
+```
 
 ## User API
 
@@ -41,3 +58,5 @@ For this you could write a CLI tool which takes the username as argument and the
 * Add HTTP basic authentication to the whole user API
 
 You can do this best if you wrap the API handlers in a appropriate middleware. For the authentication you can use a static username password pair like `admin` and `secret`. You can also try to make them configurable using flags or environment variables.
+
+* Implement a fallback machanism on the get user by id endpoint (`GET /user/<ID>`) if a user does not exist. In that case try to fetch the user from a third party source like Github, Gitlab. If the users does exist there save it into your internal store and return that user.
