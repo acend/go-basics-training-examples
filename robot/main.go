@@ -148,7 +148,7 @@ func run() error {
 	flag.Parse()
 	inputFile := flag.Arg(0)
 	if inputFile == "" {
-		inputFile = "../../robot/input.txt"
+		inputFile = "input.txt"
 	}
 
 	instructions, err := readInstructions(inputFile)

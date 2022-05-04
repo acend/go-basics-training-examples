@@ -17,23 +17,22 @@ func TestMove(t *testing.T) {
 	for _, i := range instructions {
 		r.Move(i)
 	}
+	expected := Robot{
+		Pos:      Position{2, 1},
+		MaxRight: 3,
+		MaxLeft:  -2,
+	}
 	// End position
-	gotPos := r.Pos
-	expectedPos := Position{2, 1}
-	if gotPos != expectedPos {
-		t.Errorf("End position incorrect. got: %v expected: %v", gotPos, expectedPos)
+	if r.Pos != expected.Pos {
+		t.Errorf("End position incorrect. got: %v expected: %v", r.Pos, expected.Pos)
 	}
 	// Max right
-	got := r.MaxRight
-	expected := 3
-	if got != expected {
-		t.Errorf("Max right position incorrect. got: %v expected: %v", got, expected)
+	if r.MaxRight != expected.MaxRight {
+		t.Errorf("Max right position incorrect. got: %v expected: %v", r.MaxRight, expected.MaxRight)
 	}
 	// Max left
-	got = r.MaxLeft
-	expected = -2
-	if got != expected {
-		t.Errorf("Max left position incorrect. got: %v expected: %v", got, expected)
+	if r.MaxLeft != expected.MaxLeft {
+		t.Errorf("Max left position incorrect. got: %v expected: %v", r.MaxLeft, expected.MaxLeft)
 	}
 	// Max visited
 	maxVisited, count := r.MaxVisited()
