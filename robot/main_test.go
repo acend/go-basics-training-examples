@@ -73,3 +73,9 @@ func TestParseInstruction(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkParseInstructions(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		parseInstruction("right 2")
+	}
+}
