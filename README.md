@@ -2,6 +2,7 @@
 
 These projects are meant to serve as examples how to solve the exercises.
 
+- [ASCII Pyramid](ascii-pyramid/)
 - [Robot](robot/)
 - [Github Info CLI Tool](github-info/)
 - [Myproject](myproject/)
