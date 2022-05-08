@@ -12,17 +12,21 @@ func main() {
 	var (
 		enableDecompress bool
 		err              error
+		inputReader      io.Reader
+		outputWriter     io.Writer
 	)
+
+	// parse command line
 	flag.BoolVar(&enableDecompress, "d", enableDecompress, "decompress")
 	flag.Parse()
-	if flag.NArg() < 1 {
-		fmt.Fprintln(os.Stderr, "missing input argument")
-		os.Exit(1)
+	if flag.NArg() < 2 {
+		errExit("missing input argument")
 	}
 
 	inputFile := flag.Arg(0)
+	outputFile := flag.Arg(1)
 
-	var inputReader io.Reader
+	// open input
 	if inputFile == "-" {
 		inputReader = os.Stdin
 	} else {
@@ -32,10 +36,20 @@ func main() {
 		}
 	}
 
-	if enableDecompress {
-		err = decompress(inputReader, os.Stdout)
+	// open output
+	if outputFile == "-" {
+		outputWriter = os.Stdout
 	} else {
-		err = compress(inputReader, os.Stdout)
+		outputWriter, err = os.Create(outputFile)
+		if err != nil {
+			errExit(err)
+		}
+	}
+
+	if enableDecompress {
+		err = decompress(inputReader, outputWriter)
+	} else {
+		err = compress(inputReader, outputWriter)
 	}
 
 	if err != nil {
@@ -44,8 +58,9 @@ func main() {
 
 }
 
-func errExit(args ...any) {
-	fmt.Fprintln(os.Stderr, args...)
+func errExit(err any) {
+	fmt.Fprintln(os.Stderr, err)
+	os.Exit(1)
 }
 
 func compress(reader io.Reader, writer io.Writer) error {
