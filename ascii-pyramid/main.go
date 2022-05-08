@@ -9,16 +9,16 @@ func main() {
 }
 
 func printPyramid(height int) {
-	for i := 1; i <= height; i++ {
-		spaces := height - i
+	for lineNumber := 1; lineNumber <= height; lineNumber++ {
+		spaces := height - lineNumber
 		for j := 0; j < spaces; j++ {
-			fmt.Printf(" ")
+			fmt.Print(" ")
 		}
 
-		chars := i*2 - 1
-		for j := 0; j < chars; j++ {
-			fmt.Printf("*")
+		stars := lineNumber*2 - 1
+		for j := 0; j < stars; j++ {
+			fmt.Print("*")
 		}
-		fmt.Printf("\n")
+		fmt.Print("\n")
 	}
 }
