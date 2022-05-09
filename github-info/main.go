@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -49,7 +48,7 @@ func (c *Client) GetUser(name string) (*User, error) {
 
 	info, ok := resp.Header["X-Ratelimit-Remaining"]
 	if c.Debug && ok {
-		log.Printf("remaining requests: %s", info)
+		fmt.Println("remaining requests:", info[0])
 	}
 
 	user := &User{}
