@@ -1,0 +1,3 @@
+4,Login failed,Tokens are not accepted
+2,No Tests,Test coverage is 0%
+8,Super bad,Super super super bad
