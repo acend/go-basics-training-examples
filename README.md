@@ -8,5 +8,9 @@ These projects are meant to serve as examples how to solve the exercises.
 - [Myproject](myproject/)
 - [HTTP Server](http-server/)
 
+Github API Key: `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`
+
 ## Links
 - [Feedback](https://www.menti.com/xd4cee75qu)
+- [Scratchpad](https://codimd.puzzle.ch/davICmhuQ3WIutzFgJd38Q?both)
+
