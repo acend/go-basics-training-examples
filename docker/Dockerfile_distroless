@@ -1,0 +1,5 @@
+FROM gcr.io/distroless/static
+
+COPY hello /hello
+
+CMD ["/hello"]
