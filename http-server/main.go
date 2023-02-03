@@ -23,6 +23,18 @@ func loggingMiddleware(next http.Handler) http.HandlerFunc {
 	}
 }
 
+func authMiddleware(next http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		user, password, _ := r.BasicAuth()
+		if !(user == "admin" && password == "secure") {
+			http.Error(w, "auth required", 401)
+			return
+		}
+		next.ServeHTTP(w, r)
+		return
+	}
+}
+
 func run() error {
 	handler := loggingMiddleware(pingHandler())
 	return http.ListenAndServe(":8080", handler)
