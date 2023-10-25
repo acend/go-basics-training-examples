@@ -60,6 +60,7 @@ func main() {
 	}
 	http.HandleFunc("/", jokeHandler)
 
+	fmt.Println("Serving API on http://localhost:8080")
 	// ListenAndServe always returns a non-nil error.
 	err = http.ListenAndServe(":8080", nil)
 	if err != nil {
