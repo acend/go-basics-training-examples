@@ -53,6 +53,9 @@ func requestJoke(url string) (joke, error) {
 	if err != nil {
 		return joke{}, fmt.Errorf("Error making http request: %w\n", err)
 	}
+	if res.StatusCode >= 400 {
+		return joke{}, fmt.Errorf("Received unexpected status code: %d", res.StatusCode)
+	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return joke{}, fmt.Errorf("Error reading response body: %w\n", err)
