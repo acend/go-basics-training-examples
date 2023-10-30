@@ -8,10 +8,12 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 type Client struct {
 	apiURL string
+	client *http.Client
 }
 
 var _ JokeStore = (*Client)(nil)
@@ -24,6 +26,9 @@ func NewClient(apiURL string) (*Client, error) {
 
 	return &Client{
 		apiURL: apiURL,
+		client: &http.Client{
+			Timeout: time.Second * 20,
+		},
 	}, nil
 }
 
@@ -33,7 +38,7 @@ func (c *Client) Get(ctx context.Context) (*Joke, error) {
 	if err != nil {
 		return nil, err
 	}
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := c.client.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +72,7 @@ func (c *Client) Add(ctx context.Context, joke *Joke) error {
 	if err != nil {
 		return err
 	}
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := c.client.Do(req)
 	if err != nil {
 		return err
 	}
