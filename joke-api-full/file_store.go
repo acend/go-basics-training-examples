@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"math/rand"
 	"os"
-	"sync"
 )
 
 var _ JokeAdder = (*FileStore)(nil)
@@ -13,14 +12,11 @@ var _ JokeGetter = (*FileStore)(nil)
 
 type FileStore struct {
 	fileName string
-
-	updateLock *sync.Mutex
 }
 
 func NewFileStore(fileName string) *FileStore {
 	return &FileStore{
-		fileName:   fileName,
-		updateLock: &sync.Mutex{},
+		fileName: fileName,
 	}
 }
 
